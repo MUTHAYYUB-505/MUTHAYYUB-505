@@ -1,1 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe | Front-End Developer Portfolio</title>
+    <script src="https://kit.fontawesome.com/your-unique-kit-code.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* CSS STYLES START HERE */
+        :root {
+            --primary-color: #3f51b5; /* Indigo */
+            --secondary-color: #ff4081; /* Pink Accent */
+            --text-color: #333;
+            --light-text: #f4f4f4;
+            --background-color: #ffffff;
+            --light-bg: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        h1 { font-size: 3em; color: var(--primary-color); }
+        h2 { font-size: 1.8em; margin-bottom: 20px; }
+        h3 { font-size: 2.5em; color: var(--primary-color); margin-bottom: 30px; text-align: center; }
+        p { margin-bottom: 20px; }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button.primary {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .button.primary:hover {
+            background-color: #303f9f;
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .button.secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: var(--light-bg);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease; /* Added for JS scroll effect */
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-icon {
+            font-size: 1.2em;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--light-bg);
+            padding: 100px 0;
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero h1 { margin-bottom: 10px; }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .about {
+            background: var(--background-color);
+            text-align: center;
+        }
+
+        .about h4 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .skill-icons i {
+            font-size: 3em;
+            margin: 10px;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .skill-icons i:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--light-bg);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--background-color);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            text-align: left;
+        }
+
+        .project-tech {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .project-links {
+            margin-top: auto;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .contact-form button {
+            margin-top: 10px;
+            justify-self: start;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+            }
+
+            .nav {
+                margin-top: 15px;
+            }
+
+            .nav a {
+                margin: 0 10px;
+            }
+
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form button {
+                justify-self: stretch;
+            }
+        }
+        /* CSS STYLES END HERE */
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Jane Doe</a>
+            <nav class="nav">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/yourusername" target="_blank" class="nav-icon"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" class="nav-icon"><i class="fab fa-linkedin"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container">
+                <h1>Hi, I'm **Jane Doe** 👋</h1>
+                <h2>A **Front-End Developer** passionate about building responsive and accessible web applications.</h2>
+                <a href="#projects" class="button primary">View My Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h3>About Me</h3>
+                <p>I specialize in translating designs into high-quality code. My core stack includes **HTML5, CSS3, and JavaScript (ES6+)**, with proficiency in **React** for building scalable user interfaces. I believe in writing clean, modular code and focusing on user experience (UX) and performance. I'm always eager to learn new technologies and tackle challenging problems.</p>
+                <div class="skills">
+                    <h4>My Tech Stack</h4>
+                    <div class="skill-icons">
+                        <i class="fab fa-html5" title="HTML5"></i>
+                        <i class="fab fa-css3-alt" title="CSS3"></i>
+                        <i class="fab fa-js-square" title="JavaScript"></i>
+                        <i class="fab fa-react" title="React"></i>
+                        <i class="fab fa-git-alt" title="Git"></i>
+                        <i class="fab fa-node" title="Node.js"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h3>Featured Projects</h3>
+                <div class="project-grid">
+
+                    <div class="project-card">
+                        <img src="project-image-1.jpg" alt="E-commerce Product Page Screenshot"> 
+                        <h4>Modern E-commerce Product Page</h4>
+                        <p>A responsive, mobile-first product detail page focusing on complex CSS layout (Grid/Flexbox) and vanilla JS interactivity (gallery carousel, cart logic).</p>
+                        <div class="project-tech">HTML, CSS (Sass), JavaScript</div>
+                        <div class="project-links">
+                            <a href="https://live-demo-1.com" target="_blank" class="button secondary">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-1" target="_blank" class="button secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                         <img src="project-image-2.jpg" alt="Weather App Screenshot">
+                        <h4>Real-Time Weather Dashboard</h4>
+                        <p>An application built with React, utilizing the `fetch` API to consume real-time weather data from OpenWeatherMap. Includes city search and conditional rendering.</p>
+                        <div class="project-tech">React, JavaScript, CSS Modules, REST API</div>
+                        <div class="project-links">
+                            <a href="https://live-demo-2.com" target="_blank" class="button secondary">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-2" target="_blank" class="button secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                         <img src="project-image-3.jpg" alt="To-Do List Screenshot">
+                        <h4>Framework To-Do List App</h4>
+                        <p>A comprehensive to-do manager demonstrating CRUD operations and state management within a Vue.js application. Tasks are saved to local storage for persistence.</p>
+                        <div class="project-tech">Vue.js, HTML, Tailwind CSS, Local Storage</div>
+                        <div class="project-links">
+                            <a href="https://live-demo-3.com" target="_blank" class="button secondary">Live Demo</a>
+                            <a href="https://github.com/yourusername/project-3" target="_blank" class="button secondary"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h3>Get In Touch</h3>
+                <p>Have a project idea or want to chat about web development? Send me a message!</p>
+                <form action="https://formspree.io/f/yourformid" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="button primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Jane Doe. Built with HTML, CSS, and JavaScript.</p>
+        </div>
+    </footer>
+
+    <script>
+        // JAVASCRIPT START HERE
+        // Function to handle header styling on scroll
+        function handleScroll() {
+            const header = document.querySelector('.header');
+            // If scrolled down more than 50px
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+            } else {
+                // Revert to original style
+                header.style.backgroundColor = 'var(--light-bg)';
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)';
+            }
+        }
+
+        // Add the scroll event listener
+        window.addEventListener('scroll', handleScroll);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Ignore external links that start with # (like the logo link to the very top)
+                if (this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // JAVASCRIPT END HERE
+    </script>
+</body>
+</html>
 
